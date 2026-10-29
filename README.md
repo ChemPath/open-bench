@@ -1,4 +1,17 @@
-# ChemPath Demo
+# Open Bench
+
+**Interactive, public demonstrations of computational chemistry and explainable ML for natural-product research. Every demo uses open methods and public or synthetic data, so its results can be checked rather than just believed. Production engines are not included.**
+
+| Demo | Status | Run it |
+| --- | --- | --- |
+| **ChemPath Characterization:** structure identity, descriptors and coverage for botanical formulations, plus SHAP on a synthetic model | ✅ Live | [`web/index.html`](web/index.html) · `python -m chempath_demo` |
+| Chemical Space Explorer | Planned | — |
+| SHAP Playground | Planned | — |
+| Similarity & Scaffold View | Planned | — |
+
+---
+
+## ChemPath Characterization
 
 **Molecular characterization for botanical formulations: resolve each compound to a verified structure, report identity and physicochemical descriptors, and state coverage explicitly.**
 
@@ -8,7 +21,7 @@ This repository is a **public demonstration** of what ChemPath does. It runs end
 
 ---
 
-## Quickstart
+### Quickstart
 
 ```bash
 pip install -r requirements.txt
@@ -37,7 +50,7 @@ Other commands:
 
 ---
 
-## Website demo (`web/index.html`)
+### Website demo (`web/index.html`)
 
 A single, self-contained page that runs the same characterization **in the visitor's browser** using [RDKit.js](https://www.npmjs.com/package/@rdkit/rdkit). There is no server, no upload and no build step. Drop the file onto any static host or embed it in a site page.
 
@@ -57,7 +70,7 @@ python scripts/build_web.py
 
 ---
 
-## Request → report
+### Request → report
 
 **Request**
 
@@ -112,7 +125,7 @@ Full field reference: [`docs/report_format.md`](docs/report_format.md).
 
 ---
 
-## Explainability layer (SHAP)
+### Explainability layer (SHAP)
 
 `python -m chempath_demo explain` trains a gradient-boosted classifier on **synthetic** descriptor data. The label follows a planted rule: a noisy logistic function of logP (positive) and TPSA (negative). It then uses SHAP `TreeExplainer` to check that the explanation recovers that rule.
 
@@ -131,7 +144,7 @@ Because the ground truth is known, the explanation can be checked rather than ju
 
 ---
 
-## What this demo is and isn't
+### What this demo is and isn't
 
 | This demo includes | Not included |
 | --- | --- |
