@@ -1,286 +1,182 @@
-# BioPath: Traditional Knowledge Preservation & Community Empowerment Platform
+# ChemPath Demo
 
-**Empowering indigenous communities to protect and control their traditional botanical knowledge through transparent AI technology**
+**Molecular characterization for botanical formulations: resolve each compound to a verified structure, report identity and physicochemical descriptors, and state coverage explicitly.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
-[![Development Status](https://img.shields.io/badge/status-community%20development-green.svg)](https://github.com/Omnipath2025/biopath)
-[![Community](https://img.shields.io/badge/community-indigenous%20knowledge-purple.svg)](https://github.com/Omnipath2025/biopath)
+ChemPath is the molecular characterization engine in Cloak & Quill Research's NeuroBotanica platform. Testing labs submit a formulation (compound names, reported percentages, and optional explicit structures). ChemPath returns a Molecular Characterization Report with per-compound structure identity, QC information, and a machine-readable statement of scope.
 
-> *"Technology that serves communities, not the other way around"*
-
-## Overview
-
-BioPath addresses the critical challenge of cultural bias in AI systems that systematically exclude indigenous and traditional botanical knowledge. Our community-controlled platform ensures that traditional knowledge holders maintain sovereignty over their contributions while providing transparent tools to understand and correct AI decision-making processes.
-
-**Mission**: Preserve traditional botanical knowledge while empowering communities with the tools to protect their intellectual heritage from appropriation and misrepresentation.
-
-## The Problem We're Solving
-
-Traditional AI systems exhibit systematic bias against indigenous knowledge, often dismissing or misrepresenting traditional botanical practices that have sustained communities for generations. This digital colonization perpetuates historical patterns of knowledge extraction without consent or benefit to originating communities.
-
-**Community Impact Areas**:
-- **Knowledge Sovereignty**: Communities losing control over how their knowledge is represented digitally
-- **Cultural Preservation**: Traditional botanical wisdom at risk of being lost or misrepresented
-- **Digital Equity**: AI systems that don't reflect diverse knowledge traditions
-- **Community Empowerment**: Lack of tools for communities to understand and correct AI bias
-
-## Our Community-Centered Approach
-
-### Traditional Knowledge Protection Framework
-BioPath provides communities with transparent tools to:
-- **Validate** traditional botanical knowledge within AI systems
-- **Control** how their knowledge is represented and used
-- **Correct** cultural bias and misrepresentation in real-time
-- **Preserve** traditional wisdom for future generations
-
-### Community Empowerment Tools
-- **Transparent AI Analysis**: SHAP-based explanations communities can understand
-- **Bias Detection Systems**: Tools to identify and correct cultural misrepresentation
-- **Knowledge Sovereignty Controls**: Community-managed access and usage permissions
-- **Educational Frameworks**: Training materials for community knowledge stewards
-
-### Cultural Preservation Infrastructure
-- **Respectful Digitization**: Community-controlled traditional knowledge archiving
-- **Multi-Modal Processing**: Support for oral traditions, visual knowledge, and cultural context
-- **Indigenous Language Support**: Preservation of traditional botanical nomenclature
-- **Community Validation Protocols**: Traditional knowledge verification by community elders
-
-## Technical Innovation for Social Justice
-
-Our platform transforms complex AI technology into community-accessible tools:
-
-**Community-Controlled Validation Framework**
-```python
-# Example: Community validation workflow
-def community_validation_pipeline(traditional_knowledge, community_validators):
-    """
-    Enables community elders to validate AI interpretation of traditional knowledge
-    
-    Returns:
-        - Community-approved knowledge representation
-        - Bias correction recommendations
-        - Cultural context preservation
-    """
-    return validate_with_community_oversight(traditional_knowledge, community_validators)
-```
-
-**Transparent Bias Detection**
-- Real-time identification of cultural bias in AI decision-making
-- Community-understandable explanations of AI reasoning
-- Tools for communities to correct misrepresentation
-
-**Traditional Knowledge Integration**
-- Respectful incorporation of indigenous botanical wisdom
-- Community-controlled access and sharing protocols
-- Cultural context preservation in digital formats
-
-## Development Status & Community Involvement
-
-**Current Phase**: Community-driven proof-of-concept development
-**Seeking**: Partnership with indigenous communities, foundations, and cultural preservation organizations
-
-### Community Partnership Framework
-We work directly with traditional knowledge communities as:
-- **Knowledge Partners**: Communities maintain ownership and control
-- **Cultural Advisors**: Elders guide platform development priorities
-- **Educational Collaborators**: Joint development of community training materials
-- **Preservation Partners**: Collaborative traditional knowledge archiving
-
-## Educational & Outreach Impact
-
-### Community Empowerment Programs
-- **AI Literacy for Communities**: Training programs explaining AI bias and protection tools
-- **Traditional Knowledge Digital Stewardship**: Workshops on community-controlled digitization
-- **Cultural Preservation Technology**: Education on using technology for knowledge preservation
-
-### Academic & Research Partnerships
-- **Ethical AI Research**: Collaborations on bias detection and mitigation
-- **Cultural Studies Integration**: Interdisciplinary research on traditional knowledge preservation
-- **Community-Based Participatory Research**: Research led by and benefiting communities
-
-## Current Development Status
-
-**Phase**: Community-driven proof-of-concept development
-**Focus**: Building transparent tools for traditional knowledge protection
-**Approach**: Community-led design with elder guidance and cultural protocol integration
-
-### Community Partnership Framework
-We are developing BioPath through direct partnership with traditional knowledge communities:
-- **Elder Advisory**: Traditional knowledge keepers guide platform development
-- **Cultural Protocol Integration**: Respecting traditional knowledge sharing customs
-- **Community Benefit Focus**: Ensuring technology serves community needs first
-- **Transparent Development**: Open-source approach with community oversight
-
-### Technical Development (Community-Focused)
-```python
-# Community-Centered Bias Detection Framework
-def community_controlled_validation(traditional_knowledge, community_protocols):
-    """
-    Transparent AI framework that communities can understand and control
-    
-    Ensures:
-        - Community sovereignty over traditional knowledge
-        - Transparent decision-making processes
-        - Cultural bias detection and correction
-        - Elder validation and approval workflows
-    """
-    return {
-        "community_control": "Communities maintain decision-making authority",
-        "transparent_ai": "Explainable processes communities can understand", 
-        "bias_correction": "Tools to identify and fix cultural misrepresentation",
-        "elder_validation": "Traditional knowledge verification by community leaders"
-    }
-```
-
-### Educational Mission
-BioPath serves as both a technological tool and educational platform:
-- **AI Literacy for Communities**: Training programs on understanding AI bias
-- **Digital Sovereignty Education**: Empowering communities to control their digital presence
-- **Traditional Knowledge Protection**: Tools and education for preserving cultural wisdom
-- **Intergenerational Learning**: Connecting elders' wisdom with digital preservation tools
-
-## Community Support & Resources
-
-### Traditional Knowledge Communities
-- **Cultural Protocol Guidance**: Resources for establishing appropriate knowledge sharing agreements
-- **Digital Sovereignty Training**: Education on maintaining control over traditional knowledge online
-- **Community Validation Tools**: Platforms for elders to review and approve AI interpretations
-
-### Educational Institutions
-- **Ethical AI Curriculum**: Teaching materials on bias detection and cultural sensitivity
-- **Research Partnership Frameworks**: Guidelines for respectful community collaboration
-- **Student Engagement Programs**: Opportunities for students to support community knowledge preservation
-
-## Impact & Community Benefits
-
-**Direct Community Benefits**:
-- Traditional knowledge communities maintain sovereignty over their contributions
-- Transparent tools for understanding and correcting AI bias
-- Educational resources for community knowledge stewards
-- Digital preservation of traditional botanical wisdom
-
-**Broader Social Impact**:
-- Addressing systematic bias in AI systems
-- Promoting cultural diversity in digital knowledge representation
-- Supporting indigenous rights and knowledge sovereignty
-- Advancing ethical AI development practices
-
-## Organization & Funding
-
-**Organization**: Cloak and Quill Research (501(c)(3) Nonprofit)
-**Mission**: Ethical integration of traditional knowledge with modern technology
-**Funding Status**: Seeking partnerships & foundation support for community empowerment initiatives
-
-### Foundation Partnership Opportunities
-- **Cultural Preservation**: Supporting traditional knowledge digitization and protection
-- **Digital Equity**: Ensuring AI systems represent diverse knowledge traditions
-- **Community Empowerment**: Providing tools for knowledge sovereignty and protection
-- **Educational Innovation**: Developing community-centered AI literacy programs
-
-## Community Partnerships & Collaboration
-
-**Current Seeking**:
-- **Indigenous Communities**: Traditional knowledge partnerships and cultural guidance
-- **Cultural Organizations**: Collaboration on knowledge preservation initiatives
-- **Educational Institutions**: Research partnerships focused on community benefit
-- **Foundations**: Support for community empowerment and cultural preservation programs
-
-### Partnership Framework
-All partnerships prioritize:
-- **Community Leadership**: Indigenous communities guide collaboration priorities
-- **Knowledge Sovereignty**: Communities maintain control over their traditional knowledge
-- **Equitable Benefit**: Direct benefits flow to knowledge-contributing communities
-- **Cultural Respect**: Traditional protocols guide all interactions and development
-
-## Community Partnerships & Collaboration
-
-**Seeking Partnership With**:
-- **Indigenous Communities**: Traditional knowledge partnerships and cultural guidance
-- **Educational Institutions**: Research collaborations focused on community empowerment
-- **Cultural Organizations**: Collaboration on knowledge preservation initiatives  
-- **Foundations**: Support for community empowerment and cultural preservation programs
-
-### Partnership Principles
-All partnerships prioritize:
-- **Community Leadership**: Indigenous communities guide all collaboration priorities
-- **Knowledge Sovereignty**: Communities maintain complete control over their traditional knowledge
-- **Cultural Respect**: Traditional protocols guide all interactions and development
-- **Equitable Benefit**: Direct benefits flow to knowledge-contributing communities
-
-## How to Get Involved
-
-### For Communities
-- **Cultural Consultation**: Participate in shaping tools that serve your community
-- **Knowledge Stewardship**: Training and support for digital traditional knowledge preservation
-- **Platform Testing**: Community-guided development and feedback processes
-- **Educational Partnerships**: Collaborate on community AI literacy and digital sovereignty programs
-
-### For Researchers & Educators
-- **Ethical Framework Adoption**: Learn community-centered research approaches
-- **Cultural Competency Development**: Training on respectful traditional knowledge engagement
-- **Educational Resource Creation**: Develop materials supporting community empowerment
-- **Community Partnership Support**: Facilitate respectful researcher-community collaborations
-
-```python
-# Ethical Development Guidelines
-def community_empowerment_validation(project_component):
-    """
-    Ensures all project elements directly empower traditional knowledge communities
-    """
-    requirements = {
-        "community_sovereignty": "Communities maintain control over their knowledge",
-        "cultural_protocols": "Traditional customs guide all interactions",
-        "direct_benefit": "Communities receive clear, direct benefits",
-        "transparent_process": "All decisions and processes are community-visible"
-    }
-    return validate_community_empowerment(project_component, requirements)
-```
-
-## Impact & Vision
-
-**Community Empowerment Outcomes**:
-- Traditional knowledge communities equipped with tools to protect their intellectual heritage
-- Transparent AI systems that communities can understand and control
-- Educational frameworks supporting community digital sovereignty
-- Preservation of traditional knowledge for future generations
-
-**Broader Social Justice Impact**:
-- Elimination of cultural bias in AI systems affecting indigenous communities
-- Promotion of community-controlled technology development
-- Support for traditional knowledge preservation and revitalization
-- Advancement of digital equity and community empowerment
-
-**Educational & Research Impact**:
-- Community-centered approach to ethical AI development
-- Transparent tools for understanding and correcting AI bias
-- Educational resources supporting AI literacy in traditional communities
-- Research methodologies prioritizing community benefit and sovereignty
-
-## Organization & Mission
-
-**Organization**: Cloak and Quill Research (501(c)(3) Nonprofit)
-**Mission**: Ethical integration of traditional knowledge with modern technology through community empowerment
-**Approach**: Community-led development ensuring traditional knowledge sovereignty
-
-### Foundation & Grant Opportunities
-**Focus Areas for Partnership**:
-- **Cultural Preservation**: Digital tools for traditional knowledge protection and revitalization
-- **Digital Equity**: Ensuring AI systems represent and respect diverse knowledge traditions
-- **Community Empowerment**: Technology tools that serve community needs and priorities
-- **Educational Innovation**: AI literacy programs designed for and with traditional communities
-
-**Grant Application Focus**:
-- Community-controlled technology development
-- Traditional knowledge preservation and protection
-- AI bias elimination benefiting indigenous communities
-- Educational programs supporting digital sovereignty
+This repository is an **open reference implementation of ChemPath's output contract**. It produces reports with the same shape and status semantics as the hosted service, using only open-source RDKit and a small public reference library. The production engine is proprietary, hosted only, and **not** included here. See [What this demo is and isn't](#what-this-demo-is-and-isnt).
 
 ---
 
-**Contact Information**:
-- **Community Partnerships**: partnerships@cloakandquill.org
-- **Educational Collaborations**: education@cloakandquill.org  
-- **Foundation Relations**: grants@cloakandquill.org
+## Quickstart
 
-*BioPath: Technology that serves communities, preserves culture, and empowers traditional knowledge sovereignty*
+```bash
+pip install -r requirements.txt
+```
+
+```bash
+python -m chempath_demo analyze examples/cbn_formulation.json --pdf out/cbn.pdf
+```
+
+```
+Molecular Characterization Report — SYNTHETIC DEMO — not a laboratory result
+  formulation : SYNTHETIC CBN Demonstration
+  status      : success  (coverage 100%)
+  ✓ CBN                  C21H26O2    VBGLYOIFKLUMQG-UHFFFAOYSA-N
+  · reported percentages sum to 1.0% (not independently verified)
+```
+
+Other commands:
+
+| Command | What it shows |
+| --- | --- |
+| `python -m chempath_demo analyze examples/partial_formulation.json` | `partial` status: three entries resolved (one by explicit SMILES), one reported as uncharacterizable with a reason |
+| `python -m chempath_demo batch examples/mixed_batch.json` | Batch of 4 items: valid items succeed, invalid ones fail with their error, and every item is accounted for |
+| `python -m chempath_demo library` | The 16 bundled reference structures with computed formula and InChIKey |
+| `python -m chempath_demo explain` | SHAP explainability on a synthetic model with a known ground truth |
+
+---
+
+## Request → report
+
+**Request**
+
+```json
+{
+  "formulation_name": "SYNTHETIC CBN Demonstration",
+  "entries": [
+    { "name": "CBN", "percentage": 1 },
+    { "name": "CBDV", "percentage": 0.8, "smiles": "CCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1" }
+  ]
+}
+```
+
+- `entries` (not `compounds`), with at least one nonblank `name`
+- `percentage` is optional, must be finite, and must be between 0 and 100 inclusive
+- `smiles` or `inchi` is optional; an explicit structure takes precedence over name lookup
+
+**Report (abridged)**
+
+```json
+{
+  "report_type": "Molecular Characterization Report",
+  "label": "SYNTHETIC DEMO — not a laboratory result",
+  "analysis_id": "demo_3f9c1a2b7d4e",
+  "status": "success",
+  "entries": [{
+    "input_name": "CBN",
+    "status": "characterized",
+    "structure_source": "reference_library",
+    "molecular_formula": "C21H26O2",
+    "inchikey": "VBGLYOIFKLUMQG-UHFFFAOYSA-N",
+    "molecular_weight": 310.437,
+    "descriptors": { "logp_crippen": 5.728, "tpsa": 29.46, "h_bond_donors": 1, "...": "..." }
+  }],
+  "qc": { "entries_submitted": 1, "entries_characterized": 1, "coverage": 1.0, "notes": ["..."] },
+  "scope": { "covers": ["..."], "does_not_cover": ["synergy ...", "efficacy ...", "..."] },
+  "disclaimer": "Structure characterization only. ..."
+}
+```
+
+**Status semantics**
+
+| Status | Meaning | Hosted API |
+| --- | --- | --- |
+| `success` | Every entry characterized | 200 |
+| `partial` | Some entries characterized; only those count toward coverage | 200 |
+| `failed` | No entry characterized; stored, but no exportable report | 422 on analysis, 409 on export |
+
+Uncharacterizable entries are always returned with a reason. They are never silently dropped.
+
+Full contract: [`docs/api_contract.md`](docs/api_contract.md).
+
+---
+
+## Explainability layer (SHAP)
+
+`python -m chempath_demo explain` trains a gradient-boosted classifier on **synthetic** descriptor data. The label follows a planted rule: a noisy logistic function of logP (positive) and TPSA (negative). It then uses SHAP `TreeExplainer` to check that the explanation recovers that rule.
+
+```
+held-out accuracy: 0.920
+planted drivers ('logp_crippen', 'tpsa') recovered as top features: True
+
+global importance (mean |SHAP|, log-odds):
+  logp_crippen       2.834
+  tpsa               1.742
+  aromatic_rings     0.205
+  ...
+```
+
+Because the ground truth is known, the explanation can be checked rather than just believed. The same model then gives local, per-compound explanations for the reference library. These are demonstrations of the method, **not** bioactivity, efficacy or safety predictions.
+
+---
+
+## What this demo is and isn't
+
+| This repository includes | Not included (hosted ChemPath only) |
+| --- | --- |
+| The public request/response contract and status semantics | The production characterization engine and its internals |
+| Structure identity and descriptors from open-source RDKit | Proprietary data sources, knowledge bases and reference databases |
+| Simple, illustrative QC notes written for this demo | Production QC rules, thresholds and scoring |
+| SHAP on a synthetic model with a planted ground truth | Production models, weights, features or training data |
+| A thin client for the hosted API (bring your own credentials) | Service endpoints, credentials or deployment details |
+
+Every output is labeled `SYNTHETIC DEMO`. No output here, or from the hosted service, establishes synergy, efficacy, dosing, measured mixture composition, farm-to-patient traceability, or regulatory approval. Laboratory confirmation is required.
+
+More detail: [`docs/scope.md`](docs/scope.md).
+
+---
+
+## Hosted API (testing labs)
+
+Registered testing labs call the hosted service with an `X-API-Key`. Endpoints:
+
+```
+POST /api/v1/chempath/formulation
+POST /api/v1/chempath/batch                    (up to 25 items)
+GET  /api/v1/chempath/{analysis_id}/report     (?format=json for JSON; PDF by default)
+GET  /api/v1/chempath/history
+GET  /api/lab/status
+```
+
+```python
+from chempath_demo.client import ChemPathClient
+
+client = ChemPathClient(base_url="<from onboarding>", api_key="<your lab key>")
+result = client.formulation({"formulation_name": "SYNTHETIC check", "entries": [{"name": "CBN"}]})
+```
+
+The client has no default endpoint. Base URL and credentials come from lab onboarding. Every authenticated call counts toward your lab's quota.
+
+---
+
+## Repository layout
+
+```
+chempath_demo/
+  schema.py        request validation (entries, percentages, structures)
+  library.py       name → structure lookup against the reference library
+  characterize.py  per-compound characterization, formulation and batch analysis
+  report.py        JSON and PDF report rendering
+  explain.py       SHAP demo on a synthetic model
+  client.py        hosted-API client
+  cli.py           command-line interface
+data/reference_compounds.csv   16 public structures (cannabinoids, terpenes, polyphenols)
+examples/                      synthetic request files
+tests/                         pytest suite
+docs/                          API contract, scope, research ethics
+```
+
+```bash
+pytest --cov=chempath_demo
+```
+
+The suite has 36 tests with 98% line coverage. It includes InChIKey checks for CBN, CBD, Δ9-THC, caffeine and quercetin against their published identifiers.
+
+---
+
+## About
+
+Cloak & Quill Research is a 501(c)(3) research organization in Henderson, Nevada. It works on natural therapeutic discovery through cheminformatics, systems biology and machine learning, with traditional-knowledge partnerships governed by free, prior and informed consent. See [`docs/research_ethics.md`](docs/research_ethics.md).
+
+Lab partnerships and API access: partnerships@cloakandquill.org

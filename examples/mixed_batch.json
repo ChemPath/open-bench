@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "kind": "formulation", "formulation": { "formulation_name": "SYNTHETIC batch item A", "entries": [ { "name": "CBN", "percentage": 1 } ] } },
+    { "kind": "compound", "compound": { "name": "Quercetin" } },
+    { "kind": "compound", "compound": { "name": "bad-structure", "smiles": "C1CC(" } },
+    { "kind": "formulation", "formulation": { "entries": [ { "name": "CBD", "percentage": 140 } ] } }
+  ]
+}

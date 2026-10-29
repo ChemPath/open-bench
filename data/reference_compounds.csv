@@ -1,0 +1,17 @@
+name,synonyms,compound_class,smiles
+CBN,cannabinol,phytocannabinoid,CCCCCc1cc(O)c2c(c1)OC(C)(C)c1ccc(C)cc1-2
+CBD,cannabidiol,phytocannabinoid,CCCCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1
+THC,delta-9-thc;delta9-thc;dronabinol,phytocannabinoid,CCCCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21
+THCV,tetrahydrocannabivarin,phytocannabinoid,CCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21
+CBG,cannabigerol,phytocannabinoid,CCCCCc1cc(O)c(C/C=C(\C)CCC=C(C)C)c(O)c1
+CBC,cannabichromene,phytocannabinoid,CCCCCc1cc(O)c2C=CC(C)(CCC=C(C)C)Oc2c1
+beta-Myrcene,myrcene,monoterpene,CC(C)=CCCC(=C)C=C
+D-Limonene,limonene;(r)-limonene,monoterpene,CC1=CC[C@@H](CC1)C(C)=C
+Linalool,,monoterpene alcohol,CC(C)=CCCC(C)(O)C=C
+alpha-Pinene,pinene,monoterpene,CC1=CCC2CC1C2(C)C
+beta-Caryophyllene,caryophyllene,sesquiterpene,C/C1=C\CCC(=C)[C@H]2CC(C)(C)[C@@H]2CC1
+alpha-Humulene,humulene,sesquiterpene,C/C1=C\CC(C)(C)/C=C/C/C(C)=C/CC1
+Caffeine,,purine alkaloid,CN1C=NC2=C1C(=O)N(C(=O)N2C)C
+Quercetin,,flavonol,O=c1c(O)c(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12
+Curcumin,,curcuminoid,COc1cc(/C=C/C(=O)CC(=O)/C=C/c2ccc(O)c(OC)c2)ccc1O
+trans-Resveratrol,resveratrol,stilbenoid,Oc1ccc(/C=C/c2cc(O)cc(O)c2)cc1
