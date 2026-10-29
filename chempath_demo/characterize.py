@@ -107,7 +107,7 @@ def describe(mol: Chem.Mol) -> dict[str, Any]:
             "ring_count": rdMolDescriptors.CalcNumRings(mol),
             "aromatic_rings": rdMolDescriptors.CalcNumAromaticRings(mol),
             "fraction_csp3": round(rdMolDescriptors.CalcFractionCSP3(mol), 3),
-            "stereocenters": len(Chem.FindMolChiralCenters(mol, includeUnassigned=True)),
+            "stereocenters": rdMolDescriptors.CalcNumAtomStereoCenters(mol),
         },
     }
 

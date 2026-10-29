@@ -37,6 +37,26 @@ Other commands:
 
 ---
 
+## Website demo (`web/index.html`)
+
+A single, self-contained page that runs the same characterization **in the visitor's browser** using [RDKit.js](https://www.npmjs.com/package/@rdkit/rdkit). There is no server, no upload and no build step. Drop the file onto any static host or embed it in a site page.
+
+- Presets (CBN reference, full-spectrum, partial-result), plus free entry by name or SMILES
+- Structure drawing, formula, InChIKey and descriptor profile for each compound; coverage, QC notes and scope statement
+- Downloadable JSON report
+- SHAP section with precomputed results from the synthetic model (global importance and per-compound explanations)
+- Light and dark themes; works at phone width
+
+By default RDKit.js loads from unpkg (`@rdkit/rdkit@2025.3.4-1.0.0`). To self-host, copy that package's `dist/` folder to your site and set `<html data-rdkit-base="/path/to/dist/">`.
+
+After changing the library, examples or SHAP model, re-embed the page data:
+
+```bash
+python scripts/build_web.py
+```
+
+---
+
 ## Request → report
 
 **Request**
@@ -137,9 +157,11 @@ chempath_demo/
   report.py        JSON and PDF report rendering
   explain.py       SHAP demo on a synthetic model
   cli.py           command-line interface
+web/index.html                 browser demo for the website
+scripts/build_web.py           embeds library, presets and SHAP results into the page
 data/reference_compounds.csv   16 public structures (cannabinoids, terpenes, polyphenols)
 examples/                      synthetic request files
-tests/                         pytest suite
+tests/                         pytest suite (browser test needs Node + Playwright)
 docs/                          report format, scope, research ethics
 ```
 
