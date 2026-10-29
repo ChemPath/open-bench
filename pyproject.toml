@@ -8,6 +8,7 @@ version = "0.2.0"
 description = "Open Bench: public demonstration of ChemPath molecular characterization, with SHAP explainability on a synthetic model."
 readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
 authors = [{ name = "Cloak & Quill Research" }]
 dependencies = [
   "rdkit>=2023.9.1",

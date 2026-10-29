@@ -186,6 +186,10 @@ The suite includes InChIKey checks for CBN, CBD, Δ9-THC, caffeine and quercetin
 
 ---
 
+## License
+
+[MIT](LICENSE). The license covers the code and documentation in this repository. It grants no rights to the production ChemPath engine or to any other Cloak & Quill platform, none of which is included here.
+
 ## About
 
 Cloak & Quill Research is a 501(c)(3) research organization in Henderson, Nevada. It works on natural therapeutic discovery through cheminformatics, systems biology and machine learning, with traditional-knowledge partnerships governed by free, prior and informed consent. See [`docs/research_ethics.md`](docs/research_ethics.md).
