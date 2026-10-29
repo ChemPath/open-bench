@@ -5,7 +5,7 @@
 | Demo | Status | Run it |
 | --- | --- | --- |
 | **ChemPath Characterization:** structure identity, descriptors and coverage for botanical formulations, plus SHAP on a synthetic model | ✅ Live | [`web/index.html`](web/index.html) · `python -m chempath_demo` |
-| Chemical Space Explorer | Planned | — |
+| **Chemical Space Explorer:** interactive map of 65 natural products by physicochemical profile (PCA and property axes), Lipinski/Veber regions, structural neighbours, sortable data table | ✅ Live | [`web/chemical-space.html`](web/chemical-space.html) |
 | SHAP Playground | Planned | — |
 | Similarity & Scaffold View | Planned | — |
 
@@ -171,6 +171,10 @@ chempath_demo/
   explain.py       SHAP demo on a synthetic model
   cli.py           command-line interface
 web/index.html                 browser demo for the website
+web/chemical-space.html        Chemical Space Explorer
+web/_kit/bench.css             shared Open Bench design tokens and components
+data/chemical_space.csv        65-compound explorer dataset
+scripts/build_explorer.py      computes descriptors, PCA, rules, neighbours; embeds them in the explorer page
 scripts/build_web.py           embeds library, presets and SHAP results into the page
 data/reference_compounds.csv   16 public structures (cannabinoids, terpenes, polyphenols)
 examples/                      synthetic request files
