@@ -1,36 +1,13 @@
-# Core Scientific Computing
-numpy>=1.24.0
-pandas>=2.0.0
-scikit-learn>=1.3.0
-scipy>=1.10.0
-
-# Chemistry & Molecular Processing
+# Core
 rdkit>=2023.9.1
-mordred>=1.2.0
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+shap>=0.44
 
-# Machine Learning & AI
-xgboost>=1.7.0
-lightgbm>=3.3.0
-optuna>=3.4.0
+# PDF reports (optional)
+reportlab>=4.0
 
-# Explainable AI
-shap>=0.42.0
-lime>=0.2.0
-
-# Visualization
-matplotlib>=3.7.0
-seaborn>=0.12.0
-plotly>=5.17.0
-bokeh>=3.0.0
-
-# Development Tools
-pytest>=7.4.0
-black>=23.0.0
-flake8>=6.0.0
-mypy>=1.5.0
-jupyter>=1.0.0
-
-# Optional Dependencies
-torch>=2.0.0  # For deep learning models
-
-
+# Development
+pytest>=7.4
+pytest-cov>=4.1

@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChemPath Characterization · Open Bench</title>
+<meta name="description" content="Interactive demonstration of ChemPath molecular characterization for botanical formulations. Runs entirely in your browser on synthetic examples.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-2: #f3f2ee;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6f6d68;
+  --hairline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --accent: #2a78d6;
+  --accent-ink: #1c5cab;
+  --neg: #e34948;
+  --neutral-bar: #c3c2b7;
+  --good: #0ca30c;
+  --good-ink: #006300;
+  --warn: #fab219;
+  --crit: #d03b3b;
+  --tile: #ffffff;
+  --shadow: 0 1px 2px rgba(11,11,11,0.06), 0 4px 16px rgba(11,11,11,0.04);
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9c9a93;
+    --hairline: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+    --accent: #3987e5; --accent-ink: #86b6ef; --neg: #e66767; --neutral-bar: #55534f;
+    --good: #0ca30c; --good-ink: #0ca30c; --tile: #ffffff;
+    --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9c9a93;
+  --hairline: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+  --accent: #3987e5; --accent-ink: #86b6ef; --neg: #e66767; --neutral-bar: #55534f;
+  --good: #0ca30c; --good-ink: #0ca30c; --tile: #ffffff;
+  --shadow: none;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--page); color: var(--ink); font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+a { color: var(--accent-ink); }
+code, .mono { font-family: var(--mono); font-size: 0.86em; }
+h1, h2, h3 { line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 1.45rem; margin-bottom: 6px; }
+h3 { font-size: 1rem; }
+p { margin: 0; }
+.lede { color: var(--ink-2); max-width: 64ch; }
+section { padding: 40px 0; border-top: 1px solid var(--hairline); }
+
+/* Header & hero */
+header.top { padding: 20px 0 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.brand { font-weight: 650; letter-spacing: 0.01em; }
+.brand span { color: var(--muted); font-weight: 450; }
+.theme-btn { background: none; border: 1px solid var(--border); color: var(--ink-2); border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 0.85rem; cursor: pointer; }
+.hero { padding: 48px 0 40px; }
+.hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); max-width: 22ch; }
+.hero .lede { margin-top: 14px; font-size: 1.08rem; }
+.badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; margin-bottom: 18px; }
+.badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 28px; }
+.fact { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.fact b { display: block; margin-bottom: 2px; }
+.fact span { color: var(--ink-2); font-size: 0.92rem; }
+
+/* Panels & form */
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 20px; margin-top: 20px; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.presets .label { color: var(--muted); font-size: 0.85rem; margin-right: 4px; }
+.chip { font: inherit; font-size: 0.88rem; border: 1px solid var(--border); background: var(--surface-2); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.chip:hover, .chip:focus-visible { border-color: var(--accent); }
+.field-row { display: grid; grid-template-columns: minmax(0, 2fr) 92px minmax(0, 3fr) 36px; gap: 8px; align-items: center; margin-bottom: 8px; }
+.field-head { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+input[type=text], input[type=number] { width: 100%; font: inherit; font-size: 0.94rem; color: var(--ink); background: var(--page); border: 1px solid var(--baseline); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+input.smiles { font-family: var(--mono); font-size: 0.82rem; }
+input:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.icon-btn { width: 36px; height: 36px; border: 1px solid var(--border); background: none; color: var(--muted); border-radius: 8px; cursor: pointer; font-size: 1.1rem; line-height: 1; }
+.icon-btn:hover { color: var(--crit); border-color: var(--crit); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+.btn { font: inherit; font-weight: 600; border-radius: 10px; padding: 10px 18px; cursor: pointer; border: 1px solid var(--border); background: var(--surface-2); color: var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:disabled { opacity: 0.55; cursor: progress; }
+.engine-state { font-size: 0.85rem; color: var(--muted); }
+.error-box { margin-top: 12px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--crit); color: var(--ink); background: color-mix(in srgb, var(--crit) 8%, transparent); font-size: 0.92rem; }
+.hint { font-size: 0.84rem; color: var(--muted); margin-top: 10px; }
+
+/* Results */
+.result-head { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+.status { display: inline-flex; align-items: center; gap: 8px; font-weight: 650; text-transform: capitalize; }
+.status .dot { width: 10px; height: 10px; border-radius: 50%; }
+.status.success .dot { background: var(--good); }
+.status.partial .dot { background: var(--warn); }
+.status.failed .dot { background: var(--crit); }
+.meta { color: var(--muted); font-size: 0.84rem; }
+.coverage { margin-top: 14px; }
+.coverage .bar { height: 8px; border-radius: 4px; background: var(--hairline); overflow: hidden; margin-top: 6px; }
+.coverage .bar i { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; margin-top: 18px; }
+.card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); display: flex; flex-direction: column; }
+.card .struct { background: var(--tile); display: flex; align-items: center; justify-content: center; height: 170px; border-bottom: 1px solid var(--border); }
+.card .struct svg { max-width: 100%; height: 100%; }
+.card .body { padding: 12px 14px 14px; }
+.card .name { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.card .name b { font-size: 1.02rem; }
+.card .pct { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+.card .formula { font-size: 1.05rem; margin-top: 2px; }
+.card .key { color: var(--ink-2); word-break: break-all; margin-top: 4px; }
+.card dl { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin: 10px 0 0; font-size: 0.84rem; }
+.card dt { color: var(--muted); }
+.card dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.card .src { font-size: 0.76rem; color: var(--muted); margin-top: 8px; }
+.card.missing { border-style: dashed; }
+.card.missing .struct { background: var(--surface-2); color: var(--muted); font-size: 0.9rem; }
+.notes { margin: 16px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 0.92rem; }
+.scope-strip { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--surface-2); font-size: 0.86rem; color: var(--ink-2); }
+
+/* How it works */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 20px; counter-reset: step; }
+.step { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.step::before { counter-increment: step; content: counter(step); display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--surface-2); color: var(--ink-2); font-weight: 650; font-size: 0.85rem; margin-bottom: 10px; }
+.step p { color: var(--ink-2); font-size: 0.92rem; margin-top: 4px; }
+
+/* SHAP charts */
+.viz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 8px; }
+.chart-title { font-weight: 650; }
+.chart-sub { font-size: 0.84rem; color: var(--muted); margin-bottom: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.82rem; color: var(--ink-2); margin-bottom: 10px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.hbar { display: grid; grid-template-columns: 128px 1fr 52px; align-items: center; gap: 8px; height: 26px; font-size: 0.84rem; position: relative; }
+.hbar .lbl { color: var(--ink-2); font-family: var(--mono); font-size: 0.76rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hbar .track { position: relative; height: 100%; display: flex; align-items: center; }
+.hbar .fill { height: 12px; border-radius: 0 4px 4px 0; }
+.hbar .val { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.hbar:hover .lbl, .hbar:focus-visible .lbl { color: var(--ink); }
+.hbar:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.div-track { position: relative; height: 100%; }
+.div-track .zero { position: absolute; left: 50%; top: 2px; bottom: 2px; width: 1px; background: var(--baseline); }
+.div-track .fill { position: absolute; top: 7px; height: 12px; }
+.div-track .fill.pos { border-radius: 0 4px 4px 0; background: var(--accent); }
+.div-track .fill.neg { border-radius: 4px 0 0 4px; background: var(--neg); }
+select { font: inherit; font-size: 0.92rem; color: var(--ink); background: var(--page); border: 1px solid var(--baseline); border-radius: 8px; padding: 6px 8px; }
+.tooltip { position: fixed; pointer-events: none; background: var(--ink); color: var(--page); font-size: 0.8rem; padding: 6px 9px; border-radius: 6px; z-index: 10; opacity: 0; transition: opacity 0.1s; max-width: 260px; }
+.stat { display: flex; gap: 24px; flex-wrap: wrap; margin: 14px 0 6px; }
+.stat div b { display: block; font-size: 1.4rem; }
+.stat div span { font-size: 0.8rem; color: var(--muted); }
+details { margin-top: 14px; font-size: 0.88rem; color: var(--ink-2); }
+details table { border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+details td, details th { padding: 3px 12px 3px 0; text-align: left; border-bottom: 1px solid var(--hairline); }
+
+/* Scope */
+.scope-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 20px; }
+.scope-grid ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 0.94rem; }
+.scope-grid .yes h3::before { content: "✓ "; color: var(--good-ink); }
+.scope-grid .no h3::before { content: "✕ "; color: var(--crit); }
+footer { padding: 28px 0 48px; border-top: 1px solid var(--hairline); color: var(--muted); font-size: 0.85rem; }
+footer p + p { margin-top: 8px; }
+
+@media (max-width: 640px) {
+  .field-row { grid-template-columns: minmax(0, 1fr) 78px 36px; }
+  .field-row .smiles { grid-column: 1 / 3; grid-row: 2; }
+  .field-row { margin-bottom: 14px; }
+  .field-head.smiles-h { display: none; }
+  .hbar { grid-template-columns: 104px 1fr 46px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Open Bench <span>· ChemPath Characterization</span></div>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
+  </header>
+
+  <div class="hero">
+    <div class="badge">Interactive demo · synthetic examples · runs in your browser</div>
+    <h1>Molecular characterization for botanical formulations</h1>
+    <p class="lede">ChemPath resolves each compound in a formulation to a verified chemical structure, reports its identity and physicochemical properties, and states exactly what was and wasn't characterized. Try it below with a preset, or enter your own compounds.</p>
+    <div class="facts">
+      <div class="fact"><b>Structure identity</b><span>Molecular formula, InChI, InChIKey and canonical SMILES for every entry</span></div>
+      <div class="fact"><b>Physicochemical profile</b><span>Molecular weight, logP, TPSA, H-bonding, rotatable bonds, ring systems, stereocenters</span></div>
+      <div class="fact"><b>Explicit coverage</b><span>Success, partial or failed, with a reason for every entry that could not be characterized</span></div>
+    </div>
+  </div>
+
+  <section id="try" aria-labelledby="try-h">
+    <h2 id="try-h">Try it</h2>
+    <p class="lede">Enter compound names from the reference library, or paste a SMILES string for anything else. Percentages are optional, are reported as entered, and are not verified.</p>
+    <div class="panel">
+      <div class="presets">
+        <span class="label">Presets</span>
+        <button class="chip" type="button" data-preset="cbn">CBN reference</button>
+        <button class="chip" type="button" data-preset="full">Full-spectrum example</button>
+        <button class="chip" type="button" data-preset="partial">Partial-result example</button>
+      </div>
+      <div class="field-row" aria-hidden="true">
+        <div class="field-head">Compound</div><div class="field-head">%</div><div class="field-head smiles-h">SMILES (optional)</div><div></div>
+      </div>
+      <div id="rows"></div>
+      <datalist id="libNames"></datalist>
+      <div class="actions">
+        <button class="btn" type="button" id="addRow">+ Add compound</button>
+        <button class="btn primary" type="button" id="analyze" disabled>Characterize</button>
+        <span class="engine-state" id="engineState" role="status">Loading RDKit…</span>
+      </div>
+      <div id="formError"></div>
+      <p class="hint">Library: <span id="libList"></span></p>
+    </div>
+
+    <div class="panel" id="results" hidden aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h">How it works</h2>
+    <p class="lede">The same three steps run for every entry, and every entry is accounted for in the report.</p>
+    <div class="steps">
+      <div class="step"><h3>Resolve</h3><p>An explicit structure (SMILES) takes precedence. Otherwise the name is matched against a reference library. Unresolved entries are reported with a reason, never dropped.</p></div>
+      <div class="step"><h3>Characterize</h3><p>Each structure is canonicalized and given standard identifiers (InChI, InChIKey) and a physicochemical descriptor profile.</p></div>
+      <div class="step"><h3>Report</h3><p>Coverage, input-consistency notes and a machine-readable scope statement are attached, so downstream users know exactly what the report does and does not establish.</p></div>
+    </div>
+  </section>
+
+  <section id="explain" aria-labelledby="ex-h">
+    <h2 id="ex-h">Explainability with SHAP</h2>
+    <p class="lede">ChemPath outputs are designed to be inspectable. Here a gradient-boosted model is trained on <b>synthetic</b> descriptor data whose label follows a rule we planted: higher logP raises the score, higher TPSA lowers it. SHAP then has to rediscover that rule. Because the ground truth is known, you can check the explanation instead of trusting it.</p>
+    <div class="stat" id="shapStats"></div>
+    <div class="viz-grid">
+      <div class="panel">
+        <div class="chart-title">Global feature importance</div>
+        <div class="chart-sub">Mean |SHAP value| on held-out data, log-odds</div>
+        <div class="legend"><span><i style="background:var(--accent)"></i>Planted driver</span><span><i style="background:var(--neutral-bar)"></i>Noise feature</span></div>
+        <div id="globalChart"></div>
+      </div>
+      <div class="panel">
+        <div class="chart-title">Per-compound explanation</div>
+        <div class="chart-sub"><label for="localSel">Reference compound</label> <select id="localSel"></select> <span id="localP"></span></div>
+        <div class="legend"><span><i style="background:var(--accent)"></i>Raises synthetic score</span><span><i style="background:var(--neg)"></i>Lowers synthetic score</span></div>
+        <div id="localChart"></div>
+      </div>
+    </div>
+    <details><summary>Show values as a table</summary><div id="shapTable"></div></details>
+    <p class="hint">This model is synthetic and is not a ChemPath model. Its scores are not bioactivity, efficacy or safety predictions.</p>
+  </section>
+
+  <section aria-labelledby="scope-h">
+    <h2 id="scope-h">What a characterization report does and doesn't establish</h2>
+    <div class="scope-grid">
+      <div class="panel yes"><h3>Establishes</h3><ul id="scopeYes"></ul></div>
+      <div class="panel no"><h3>Does not establish</h3><ul id="scopeNo"></ul></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>This page is a public demonstration that uses open-source <a href="https://www.rdkit.org" rel="noopener">RDKit</a>, a 16-compound public reference library and synthetic examples. It is not the production ChemPath engine, and its outputs are not laboratory results. Laboratory confirmation is required for any decision.</p>
+    <p>ChemPath is developed by Cloak &amp; Quill Research, a 501(c)(3) research organization in Henderson, Nevada. Lab partnerships: <a href="mailto:partnerships@cloakandquill.org">partnerships@cloakandquill.org</a> · <span id="ver"></span></p>
+  </footer>
+</div>
+<div class="tooltip" id="tip" role="tooltip"></div>
+
+<script>
+/*DEMO-DATA:BEGIN*/
+const DEMO_DATA = {"version":"0.2.0","library":[{"name":"CBN","synonyms":["cannabinol"],"compound_class":"phytocannabinoid","smiles":"CCCCCc1cc(O)c2c(c1)OC(C)(C)c1ccc(C)cc1-2"},{"name":"CBD","synonyms":["cannabidiol"],"compound_class":"phytocannabinoid","smiles":"CCCCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1"},{"name":"THC","synonyms":["delta-9-thc","delta9-thc","dronabinol"],"compound_class":"phytocannabinoid","smiles":"CCCCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21"},{"name":"THCV","synonyms":["tetrahydrocannabivarin"],"compound_class":"phytocannabinoid","smiles":"CCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21"},{"name":"CBG","synonyms":["cannabigerol"],"compound_class":"phytocannabinoid","smiles":"CCCCCc1cc(O)c(C/C=C(\\C)CCC=C(C)C)c(O)c1"},{"name":"CBC","synonyms":["cannabichromene"],"compound_class":"phytocannabinoid","smiles":"CCCCCc1cc(O)c2C=CC(C)(CCC=C(C)C)Oc2c1"},{"name":"beta-Myrcene","synonyms":["myrcene"],"compound_class":"monoterpene","smiles":"CC(C)=CCCC(=C)C=C"},{"name":"D-Limonene","synonyms":["limonene","(r)-limonene"],"compound_class":"monoterpene","smiles":"CC1=CC[C@@H](CC1)C(C)=C"},{"name":"Linalool","synonyms":[],"compound_class":"monoterpene alcohol","smiles":"CC(C)=CCCC(C)(O)C=C"},{"name":"alpha-Pinene","synonyms":["pinene"],"compound_class":"monoterpene","smiles":"CC1=CCC2CC1C2(C)C"},{"name":"beta-Caryophyllene","synonyms":["caryophyllene"],"compound_class":"sesquiterpene","smiles":"C/C1=C\\CCC(=C)[C@H]2CC(C)(C)[C@@H]2CC1"},{"name":"alpha-Humulene","synonyms":["humulene"],"compound_class":"sesquiterpene","smiles":"C/C1=C\\CC(C)(C)/C=C/C/C(C)=C/CC1"},{"name":"Caffeine","synonyms":[],"compound_class":"purine alkaloid","smiles":"CN1C=NC2=C1C(=O)N(C(=O)N2C)C"},{"name":"Quercetin","synonyms":[],"compound_class":"flavonol","smiles":"O=c1c(O)c(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12"},{"name":"Curcumin","synonyms":[],"compound_class":"curcuminoid","smiles":"COc1cc(/C=C/C(=O)CC(=O)/C=C/c2ccc(O)c(OC)c2)ccc1O"},{"name":"trans-Resveratrol","synonyms":["resveratrol"],"compound_class":"stilbenoid","smiles":"Oc1ccc(/C=C/c2cc(O)cc(O)c2)cc1"}],"presets":{"cbn":{"formulation_name":"SYNTHETIC CBN Demonstration","entries":[{"name":"CBN","percentage":1}]},"full":{"formulation_name":"SYNTHETIC Full-Spectrum Example","entries":[{"name":"CBD","percentage":18.5},{"name":"THC","percentage":0.3},{"name":"CBG","percentage":1.2},{"name":"beta-Myrcene","percentage":0.6},{"name":"beta-Caryophyllene","percentage":0.4},{"name":"D-Limonene","percentage":0.2}]},"partial":{"formulation_name":"SYNTHETIC Partial-Result Example","entries":[{"name":"CBD","percentage":10},{"name":"Linalool","percentage":0.5},{"name":"CBDV","percentage":0.8,"smiles":"CCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1"},{"name":"Unlisted extract fraction","percentage":2}]}},"shap":{"samples":2000,"seed":7,"test_accuracy":0.92,"planted_drivers":["logp_crippen","tpsa"],"recovered":true,"global":[{"feature":"logp_crippen","value":2.834},{"feature":"tpsa","value":1.742},{"feature":"aromatic_rings","value":0.205},{"feature":"molecular_weight","value":0.139},{"feature":"fraction_csp3","value":0.086},{"feature":"rotatable_bonds","value":0.041},{"feature":"h_bond_acceptors","value":0.019},{"feature":"h_bond_donors","value":0.015}],"local":[{"name":"CBN","p":0.995,"contributions":{"logp_crippen":3.849,"tpsa":1.78,"molecular_weight":-0.028,"h_bond_donors":-0.003,"h_bond_acceptors":0.014,"rotatable_bonds":-0.081,"aromatic_rings":0.083,"fraction_csp3":-0.025}},{"name":"CBD","p":0.995,"contributions":{"logp_crippen":4.221,"tpsa":1.334,"molecular_weight":-0.019,"h_bond_donors":-0.003,"h_bond_acceptors":0.009,"rotatable_bonds":0.043,"aromatic_rings":-0.147,"fraction_csp3":-0.018}},{"name":"THC","p":0.996,"contributions":{"logp_crippen":3.916,"tpsa":1.923,"molecular_weight":-0.018,"h_bond_donors":-0.003,"h_bond_acceptors":0.009,"rotatable_bonds":-0.082,"aromatic_rings":-0.059,"fraction_csp3":-0.044}},{"name":"THCV","p":0.995,"contributions":{"logp_crippen":3.592,"tpsa":2.166,"molecular_weight":-0.018,"h_bond_donors":-0.003,"h_bond_acceptors":0.009,"rotatable_bonds":-0.082,"aromatic_rings":-0.059,"fraction_csp3":-0.026}},{"name":"CBG","p":0.995,"contributions":{"logp_crippen":4.233,"tpsa":1.403,"molecular_weight":0.003,"h_bond_donors":-0.003,"h_bond_acceptors":0.018,"rotatable_bonds":0.023,"aromatic_rings":-0.147,"fraction_csp3":-0.018}},{"name":"CBC","p":0.996,"contributions":{"logp_crippen":3.874,"tpsa":2.007,"molecular_weight":-0.019,"h_bond_donors":-0.003,"h_bond_acceptors":0.018,"rotatable_bonds":0.025,"aromatic_rings":-0.059,"fraction_csp3":-0.022}},{"name":"beta-Myrcene","p":0.984,"contributions":{"logp_crippen":1.419,"tpsa":2.928,"molecular_weight":0.169,"h_bond_donors":-0.009,"h_bond_acceptors":0.078,"rotatable_bonds":-0.113,"aromatic_rings":-0.267,"fraction_csp3":0.11}},{"name":"D-Limonene","p":0.979,"contributions":{"logp_crippen":1.433,"tpsa":2.871,"molecular_weight":0.169,"h_bond_donors":-0.009,"h_bond_acceptors":0.078,"rotatable_bonds":-0.113,"aromatic_rings":-0.267,"fraction_csp3":-0.098}},{"name":"Linalool","p":0.979,"contributions":{"logp_crippen":0.427,"tpsa":3.655,"molecular_weight":0.3,"h_bond_donors":-0.009,"h_bond_acceptors":0.138,"rotatable_bonds":-0.112,"aromatic_rings":-0.241,"fraction_csp3":-0.119}},{"name":"alpha-Pinene","p":0.979,"contributions":{"logp_crippen":0.829,"tpsa":3.421,"molecular_weight":0.111,"h_bond_donors":-0.009,"h_bond_acceptors":0.116,"rotatable_bonds":-0.114,"aromatic_rings":-0.267,"fraction_csp3":-0.042}},{"name":"beta-Caryophyllene","p":0.995,"contributions":{"logp_crippen":3.233,"tpsa":2.366,"molecular_weight":0.265,"h_bond_donors":-0.009,"h_bond_acceptors":-0.02,"rotatable_bonds":-0.086,"aromatic_rings":-0.168,"fraction_csp3":0.031}},{"name":"alpha-Humulene","p":0.995,"contributions":{"logp_crippen":3.322,"tpsa":2.264,"molecular_weight":0.265,"h_bond_donors":-0.009,"h_bond_acceptors":-0.02,"rotatable_bonds":-0.086,"aromatic_rings":-0.168,"fraction_csp3":-0.058}},{"name":"Caffeine","p":0.009,"contributions":{"logp_crippen":-5.155,"tpsa":0.272,"molecular_weight":0.324,"h_bond_donors":-0.009,"h_bond_acceptors":-0.008,"rotatable_bonds":-0.03,"aromatic_rings":0.072,"fraction_csp3":0.018}},{"name":"Quercetin","p":0.005,"contributions":{"logp_crippen":-2.424,"tpsa":-3.008,"molecular_weight":-0.073,"h_bond_donors":0.031,"h_bond_acceptors":0.002,"rotatable_bonds":-0.023,"aromatic_rings":0.087,"fraction_csp3":0.353}},{"name":"Curcumin","p":0.211,"contributions":{"logp_crippen":0.954,"tpsa":-2.245,"molecular_weight":-0.162,"h_bond_donors":-0.008,"h_bond_acceptors":-0.021,"rotatable_bonds":-0.044,"aromatic_rings":0.321,"fraction_csp3":0.104}},{"name":"trans-Resveratrol","p":0.961,"contributions":{"logp_crippen":1.001,"tpsa":1.491,"molecular_weight":0.006,"h_bond_donors":0.028,"h_bond_acceptors":0.007,"rotatable_bonds":-0.027,"aromatic_rings":0.329,"fraction_csp3":0.591}}]}};
+/*DEMO-DATA:END*/
+</script>
+<script>
+"use strict";
+// Where RDKit.js is loaded from. Self-host by pointing this at your own copy of
+// the @rdkit/rdkit "dist" folder (RDKit_minimal.js + RDKit_minimal.wasm).
+const RDKIT_BASE = document.documentElement.dataset.rdkitBase
+  || "https://unpkg.com/@rdkit/rdkit@2025.3.4-1.0.0/dist/";
+
+const LABEL = "SYNTHETIC DEMO — not a laboratory result";
+const SCOPE = {
+  covers: [
+    "per-compound structure identity (canonical SMILES, InChI, InChIKey)",
+    "molecular formula, molecular weight and exact mass",
+    "standard RDKit physicochemical descriptors",
+    "characterization coverage and input QC notes",
+  ],
+  does_not_cover: [
+    "measured or verified mixture composition",
+    "synergy or compound-compound interaction",
+    "efficacy, therapeutic benefit or dosing",
+    "farm-to-patient traceability",
+    "regulatory approval or suitability",
+  ],
+};
+const DISCLAIMER = "Structure characterization only. Reported percentages are taken from the request "
+  + "and are not independently verified. This output does not establish synergy, "
+  + "efficacy, dosing, mixture composition or regulatory approval. Laboratory "
+  + "confirmation is required. Generated by the open ChemPath demo, not the "
+  + "production ChemPath engine.";
+
+let RDKit = null;
+
+/* ---------- characterization (mirrors chempath_demo/characterize.py) ---------- */
+
+class RequestError extends Error {
+  constructor(message, httpStatus = 422) { super(message); this.httpStatus = httpStatus; }
+}
+
+const normKey = (s) => s.toLowerCase().replace(/_/g, " ").split(/\s+/).filter(Boolean).join(" ");
+const LIBRARY = new Map();
+for (const c of DEMO_DATA.library || []) {
+  for (const alias of [c.name, ...c.synonyms]) LIBRARY.set(normKey(alias), c);
+}
+
+const round = (x, n) => { const f = 10 ** n; return Math.round(x * f) / f; };
+const pyFloat = (x) => (Number.isInteger(x) ? x.toFixed(1) : String(x));
+
+function parseFormulation(payload) {
+  if (payload === null || typeof payload !== "object" || Array.isArray(payload)) {
+    throw new RequestError("formulation body must be a JSON object", 400);
+  }
+  if ("compounds" in payload && !("entries" in payload)) throw new RequestError("use 'entries', not 'compounds'", 400);
+  const raw = payload.entries;
+  if (!Array.isArray(raw)) throw new RequestError("'entries' must be a list", 400);
+  if (!raw.length) throw new RequestError("'entries' must contain at least one compound");
+  const entries = raw.map((e, i) => {
+    if (e === null || typeof e !== "object" || Array.isArray(e)) throw new RequestError(`entries[${i}] must be an object`, 400);
+    if (typeof e.name !== "string" || !e.name.trim()) throw new RequestError(`entries[${i}].name must be a nonblank string`);
+    let pct = null;
+    if (e.percentage !== null && e.percentage !== undefined) {
+      if (typeof e.percentage !== "number") throw new RequestError(`entries[${i}].percentage must be a number`);
+      if (!Number.isFinite(e.percentage) || e.percentage < 0 || e.percentage > 100) {
+        throw new RequestError(`entries[${i}].percentage must be finite and within 0-100`);
+      }
+      pct = e.percentage;
+    }
+    const smiles = typeof e.smiles === "string" && e.smiles.trim() ? e.smiles.trim() : null;
+    const inchi = typeof e.inchi === "string" && e.inchi.trim() ? e.inchi.trim() : null;
+    return { name: e.name.trim(), percentage: pct, smiles, inchi };
+  });
+  const name = typeof payload.formulation_name === "string" && payload.formulation_name.trim()
+    ? payload.formulation_name.trim() : "Untitled formulation";
+  return { formulation_name: name, entries };
+}
+
+function getMol(input) {
+  let mol = null;
+  try { mol = RDKit.get_mol(input); } catch (_) { mol = null; }
+  if (mol && typeof mol.is_valid === "function" && !mol.is_valid()) { mol.delete(); mol = null; }
+  return mol;
+}
+
+function resolve(entry) {
+  if (entry.smiles) {
+    const mol = getMol(entry.smiles);
+    return mol ? [mol, "smiles", null] : [null, "smiles", "SMILES could not be parsed"];
+  }
+  if (entry.inchi) return [null, "inchi", "InChI input is not supported in the browser demo; supply smiles"];
+  const hit = LIBRARY.get(normKey(entry.name));
+  if (!hit) return [null, "name", "name not in reference library; supply smiles or inchi"];
+  return [getMol(hit.smiles), "reference_library", null];
+}
+
+function describe(mol) {
+  const inchi = mol.get_inchi();
+  const d = JSON.parse(mol.get_descriptors());
+  return {
+    canonical_smiles: mol.get_smiles(),
+    molecular_formula: inchi.split("/")[1] || "",
+    inchi,
+    inchikey: RDKit.get_inchikey_for_inchi(inchi),
+    molecular_weight: round(d.amw, 3),
+    exact_mass: round(d.exactmw, 4),
+    descriptors: {
+      logp_crippen: round(d.CrippenClogP, 3),
+      tpsa: round(d.tpsa, 2),
+      h_bond_donors: d.NumHBD,
+      h_bond_acceptors: d.NumHBA,
+      rotatable_bonds: d.NumRotatableBonds,
+      heavy_atoms: d.NumHeavyAtoms,
+      ring_count: d.NumRings,
+      aromatic_rings: d.NumAromaticRings,
+      fraction_csp3: round(d.FractionCSP3, 3),
+      stereocenters: d.NumAtomStereoCenters,
+    },
+  };
+}
+
+function characterizeEntry(entry) {
+  const [mol, source, reason] = resolve(entry);
+  const result = { input_name: entry.name, reported_percentage: entry.percentage, structure_source: source };
+  if (!mol) return Object.assign(result, { status: "uncharacterizable", reason });
+  try {
+    return Object.assign(result, { status: "characterized" }, describe(mol), { _svg: mol.get_svg(260, 170) });
+  } finally { mol.delete(); }
+}
+
+function qc(results) {
+  const ok = results.filter((r) => r.status === "characterized");
+  const notes = [];
+  const reported = results.map((r) => r.reported_percentage).filter((p) => p !== null);
+  const pctSum = reported.length ? round(reported.reduce((a, b) => a + b, 0), 4) : null;
+  if (pctSum !== null) {
+    notes.push(`reported percentages sum to ${pyFloat(pctSum)}% (not independently verified)`);
+    if (pctSum > 100) notes.push("reported percentages exceed 100% in total");
+  }
+  const missing = results.length - reported.length;
+  if (missing) notes.push(`${missing} ${missing === 1 ? "entry has" : "entries have"} no reported percentage`);
+  const counts = new Map();
+  for (const r of ok) counts.set(r.inchikey, (counts.get(r.inchikey) || 0) + 1);
+  const dupes = [...counts].filter(([, n]) => n > 1).map(([k]) => k);
+  if (dupes.length) notes.push(`same structure submitted more than once: ${dupes.join(", ")}`);
+  const unassigned = ok.filter((r) => r.structure_source !== "reference_library"
+    && r.descriptors.stereocenters && !r.canonical_smiles.includes("@")).map((r) => r.input_name);
+  if (unassigned.length) notes.push(`stereochemistry unspecified for: ${unassigned.join(", ")}`);
+  return {
+    entries_submitted: results.length,
+    entries_characterized: ok.length,
+    coverage: round(ok.length / results.length, 4),
+    reported_percentage_sum: pctSum,
+    notes,
+  };
+}
+
+function newId() {
+  const b = new Uint8Array(6); crypto.getRandomValues(b);
+  return "demo_" + [...b].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+
+function analyzeFormulation(payload) {
+  const request = parseFormulation(payload);
+  const results = request.entries.map(characterizeEntry);
+  const q = qc(results);
+  const n = q.entries_characterized;
+  const status = n === results.length ? "success" : n ? "partial" : "failed";
+  return {
+    report_type: "Molecular Characterization Report",
+    label: LABEL,
+    analysis_id: newId(),
+    created_at: new Date().toISOString().replace(/\.\d{3}Z$/, "+00:00"),
+    formulation_name: request.formulation_name,
+    status,
+    http_status: status === "failed" ? 422 : 200,
+    entries: results,
+    qc: q,
+    scope: SCOPE,
+    disclaimer: DISCLAIMER,
+    engine: { name: "chempath-demo (browser)", version: DEMO_DATA.version, rdkit_version: RDKit.version(),
+      note: "Public demonstration build. Not the production ChemPath engine." },
+  };
+}
+
+/* ---------- UI ---------- */
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let lastReport = null;
+
+function addRow(entry = {}) {
+  const row = document.createElement("div");
+  row.className = "field-row";
+  row.innerHTML = `
+    <input type="text" class="name" list="libNames" placeholder="e.g. CBD" aria-label="Compound name">
+    <input type="number" class="pct" min="0" max="100" step="any" placeholder="—" aria-label="Reported percentage">
+    <input type="text" class="smiles" placeholder="optional SMILES" aria-label="SMILES (optional)" spellcheck="false" autocomplete="off">
+    <button type="button" class="icon-btn" aria-label="Remove compound">×</button>`;
+  row.querySelector(".name").value = entry.name || "";
+  row.querySelector(".pct").value = entry.percentage ?? "";
+  row.querySelector(".smiles").value = entry.smiles || "";
+  row.querySelector(".icon-btn").addEventListener("click", () => { row.remove(); if (!$("rows").children.length) addRow(); });
+  $("rows").appendChild(row);
+}
+
+function loadPreset(key) {
+  const p = DEMO_DATA.presets[key];
+  $("rows").innerHTML = "";
+  p.entries.forEach(addRow);
+  $("rows").dataset.formulationName = p.formulation_name;
+  $("formError").innerHTML = "";
+}
+
+function readForm() {
+  const entries = [...$("rows").children].map((row) => {
+    const name = row.querySelector(".name").value;
+    const pctRaw = row.querySelector(".pct").value.trim();
+    const smiles = row.querySelector(".smiles").value;
+    const e = { name: name.trim() || smiles.trim() };
+    if (pctRaw !== "") e.percentage = Number(pctRaw);
+    if (smiles.trim()) e.smiles = smiles;
+    return e;
+  }).filter((e) => e.name || e.percentage !== undefined);
+  return { formulation_name: $("rows").dataset.formulationName || "Custom formulation (browser demo)", entries };
+}
+
+const fmt = (x, n = 2) => (x === null || x === undefined ? "—" : Number(x).toFixed(n));
+
+function renderReport(r) {
+  const card = (e) => {
+    const pct = e.reported_percentage === null ? "no % reported" : `${e.reported_percentage}% reported`;
+    if (e.status !== "characterized") {
+      return `<div class="card missing"><div class="struct">Not characterized</div><div class="body">
+        <div class="name"><b>${esc(e.input_name)}</b><span class="pct">${esc(pct)}</span></div>
+        <p class="key" style="margin-top:6px">${esc(e.reason)}</p></div></div>`;
+    }
+    const d = e.descriptors;
+    const src = { reference_library: "Resolved from reference library", smiles: "Resolved from supplied SMILES" }[e.structure_source] || e.structure_source;
+    return `<div class="card"><div class="struct">${e._svg || ""}</div><div class="body">
+      <div class="name"><b>${esc(e.input_name)}</b><span class="pct">${esc(pct)}</span></div>
+      <div class="formula mono">${esc(e.molecular_formula)}</div>
+      <div class="key mono">${esc(e.inchikey)}</div>
+      <dl>
+        <dt>MW (g/mol)</dt><dd>${fmt(e.molecular_weight)}</dd>
+        <dt>Exact mass</dt><dd>${fmt(e.exact_mass, 4)}</dd>
+        <dt>logP</dt><dd>${fmt(d.logp_crippen)}</dd>
+        <dt>TPSA (Å²)</dt><dd>${fmt(d.tpsa, 1)}</dd>
+        <dt>H-bond donors / acceptors</dt><dd>${d.h_bond_donors} / ${d.h_bond_acceptors}</dd>
+        <dt>Rotatable bonds</dt><dd>${d.rotatable_bonds}</dd>
+        <dt>Rings (aromatic)</dt><dd>${d.ring_count} (${d.aromatic_rings})</dd>
+        <dt>Fsp3 · stereocenters</dt><dd>${fmt(d.fraction_csp3)} · ${d.stereocenters}</dd>
+      </dl>
+      <div class="src">${esc(src)}</div></div></div>`;
+  };
+  const q = r.qc;
+  $("results").innerHTML = `
+    <div class="result-head">
+      <div>
+        <div class="status ${r.status}"><span class="dot" aria-hidden="true"></span>${esc(r.status)}</div>
+        <div class="meta">${esc(r.formulation_name)} · <span class="mono">${esc(r.analysis_id)}</span> · ${esc(r.label)}</div>
+      </div>
+      <button class="btn" type="button" id="dl">Download JSON report</button>
+    </div>
+    <div class="coverage"><b>Coverage:</b> ${q.entries_characterized} of ${q.entries_submitted} entries characterized (${Math.round(q.coverage * 100)}%)
+      <div class="bar" role="img" aria-label="Coverage ${Math.round(q.coverage * 100)} percent"><i style="width:${q.coverage * 100}%"></i></div></div>
+    <div class="cards">${r.entries.map(card).join("")}</div>
+    ${q.notes.length ? `<ul class="notes">${q.notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>` : ""}
+    <div class="scope-strip">${esc(r.disclaimer)}</div>`;
+  $("results").hidden = false;
+  $("dl").addEventListener("click", downloadReport);
+}
+
+function downloadReport() {
+  if (!lastReport) return;
+  const clean = JSON.parse(JSON.stringify(lastReport, (k, v) => (k === "_svg" ? undefined : v)));
+  const url = URL.createObjectURL(new Blob([JSON.stringify(clean, null, 2)], { type: "application/json" }));
+  const a = Object.assign(document.createElement("a"), { href: url, download: `${clean.analysis_id}.json` });
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function runAnalysis() {
+  $("formError").innerHTML = "";
+  try {
+    lastReport = analyzeFormulation(readForm());
+    renderReport(lastReport);
+    $("results").scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (err) {
+    if (!(err instanceof RequestError)) throw err;
+    $("formError").innerHTML = `<div class="error-box">Request rejected: ${esc(err.message)}</div>`;
+  }
+}
+
+/* ---------- SHAP charts ---------- */
+
+const tip = $("tip");
+function bindTip(el, text) {
+  const show = (x, y) => { tip.textContent = text; tip.style.left = `${Math.min(x + 12, innerWidth - 270)}px`; tip.style.top = `${y + 14}px`; tip.style.opacity = 1; };
+  el.addEventListener("mousemove", (ev) => show(ev.clientX, ev.clientY));
+  el.addEventListener("mouseleave", () => { tip.style.opacity = 0; });
+  el.addEventListener("focus", () => { const b = el.getBoundingClientRect(); show(b.left + 40, b.top); });
+  el.addEventListener("blur", () => { tip.style.opacity = 0; });
+}
+
+function renderShap() {
+  const s = DEMO_DATA.shap;
+  if (!s) return;
+  $("shapStats").innerHTML = `
+    <div><b>${(s.test_accuracy * 100).toFixed(1)}%</b><span>held-out accuracy (synthetic)</span></div>
+    <div><b>${s.recovered ? "Yes" : "No"}</b><span>planted drivers ranked top 2</span></div>
+    <div><b>${s.samples.toLocaleString()}</b><span>synthetic training rows</span></div>`;
+
+  const max = Math.max(...s.global.map((g) => g.value));
+  $("globalChart").innerHTML = "";
+  for (const g of s.global) {
+    const planted = s.planted_drivers.includes(g.feature);
+    const row = document.createElement("div");
+    row.className = "hbar"; row.tabIndex = 0;
+    row.innerHTML = `<span class="lbl">${esc(g.feature)}</span>
+      <span class="track"><span class="fill" style="width:${(g.value / max) * 100}%;background:${planted ? "var(--accent)" : "var(--neutral-bar)"}"></span></span>
+      <span class="val">${g.value.toFixed(2)}</span>`;
+    bindTip(row, `${g.feature}: mean |SHAP| ${g.value.toFixed(3)}${planted ? " (planted driver)" : " (noise)"}`);
+    $("globalChart").appendChild(row);
+  }
+
+  const sel = $("localSel");
+  sel.innerHTML = s.local.map((l, i) => `<option value="${i}">${esc(l.name)}</option>`).join("");
+  const drawLocal = () => {
+    const l = s.local[Number(sel.value)];
+    $("localP").textContent = `· synthetic score ${l.p.toFixed(2)}`;
+    const items = Object.entries(l.contributions).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+    const lim = Math.max(...items.map(([, v]) => Math.abs(v)), 0.01);
+    $("localChart").innerHTML = "";
+    for (const [f, v] of items) {
+      const w = (Math.abs(v) / lim) * 50;
+      const row = document.createElement("div");
+      row.className = "hbar"; row.tabIndex = 0;
+      row.innerHTML = `<span class="lbl">${esc(f)}</span>
+        <span class="div-track"><span class="zero"></span><span class="fill ${v >= 0 ? "pos" : "neg"}" style="${v >= 0 ? `left:50%` : `right:50%`};width:${w}%"></span></span>
+        <span class="val">${Math.abs(v) < 0.005 ? "0.00" : (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2)}</span>`;
+      bindTip(row, `${l.name} · ${f}: ${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(3)} log-odds (${v >= 0 ? "raises" : "lowers"} synthetic score)`);
+      $("localChart").appendChild(row);
+    }
+  };
+  sel.addEventListener("change", drawLocal);
+  drawLocal();
+
+  const feats = s.global.map((g) => g.feature);
+  $("shapTable").innerHTML = `<table><thead><tr><th>Compound</th><th>score</th>${feats.map((f) => `<th class="mono">${esc(f)}</th>`).join("")}</tr></thead><tbody>
+    <tr><td><b>mean |SHAP|</b></td><td></td>${s.global.map((g) => `<td>${g.value.toFixed(3)}</td>`).join("")}</tr>
+    ${s.local.map((l) => `<tr><td>${esc(l.name)}</td><td>${l.p.toFixed(2)}</td>${feats.map((f) => `<td>${l.contributions[f].toFixed(3)}</td>`).join("")}</tr>`).join("")}
+  </tbody></table>`;
+}
+
+/* ---------- boot ---------- */
+
+function initTheme() {
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("chempath-theme"); if (t) root.dataset.theme = t; } catch (_) {}
+  $("themeBtn").addEventListener("click", () => {
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("chempath-theme", root.dataset.theme); } catch (_) {}
+  });
+}
+
+function loadRDKit() {
+  return new Promise((ok, fail) => {
+    if (window.initRDKitModule) return ok();
+    const s = document.createElement("script");
+    s.src = RDKIT_BASE + "RDKit_minimal.js";
+    s.onload = ok; s.onerror = () => fail(new Error("could not load RDKit.js"));
+    document.head.appendChild(s);
+  }).then(() => window.initRDKitModule({ locateFile: () => RDKIT_BASE + "RDKit_minimal.wasm" }));
+}
+
+function boot() {
+  initTheme();
+  $("ver").textContent = `demo v${DEMO_DATA.version}`;
+  $("libNames").innerHTML = DEMO_DATA.library.map((c) => `<option value="${esc(c.name)}">`).join("");
+  $("libList").textContent = DEMO_DATA.library.map((c) => c.name).join(", ");
+  $("scopeYes").innerHTML = SCOPE.covers.map((x) => `<li>${esc(x)}</li>`).join("");
+  $("scopeNo").innerHTML = SCOPE.does_not_cover.map((x) => `<li>${esc(x)}</li>`).join("");
+  document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => loadPreset(b.dataset.preset)));
+  $("addRow").addEventListener("click", () => { delete $("rows").dataset.formulationName; addRow(); });
+  $("rows").addEventListener("input", () => { delete $("rows").dataset.formulationName; });
+  $("analyze").addEventListener("click", runAnalysis);
+  loadPreset("cbn");
+  renderShap();
+
+  loadRDKit().then((mod) => {
+    RDKit = mod;
+    $("engineState").textContent = `RDKit ${RDKit.version()} ready · runs locally, nothing is uploaded`;
+    $("analyze").disabled = false;
+    runAnalysis();
+  }).catch(() => {
+    $("engineState").textContent = "The chemistry engine (RDKit.js) could not be loaded. Check your connection and reload.";
+  });
+}
+
+window.ChemPathDemo = { analyzeFormulation, RequestError };
+boot();
+</script>
+</body>
+</html>

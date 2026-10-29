@@ -1,0 +1,11 @@
+{
+  "formulation_name": "SYNTHETIC Full-Spectrum Example",
+  "entries": [
+    { "name": "CBD", "percentage": 18.5 },
+    { "name": "THC", "percentage": 0.3 },
+    { "name": "CBG", "percentage": 1.2 },
+    { "name": "beta-Myrcene", "percentage": 0.6 },
+    { "name": "beta-Caryophyllene", "percentage": 0.4 },
+    { "name": "D-Limonene", "percentage": 0.2 }
+  ]
+}

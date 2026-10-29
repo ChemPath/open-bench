@@ -1,90 +1,19 @@
-# BioPath SHAP Demo - Community Education Focus
-# Simplified .gitignore for grant-ready repository
-
-# Python basics
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-
-# Virtual environments
-.env
-.venv
-env/
-venv/
-ENV/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# IDE files
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*.swo
-*~
-
-# Package management
 *.egg-info/
-dist/
 build/
-
-# Testing
+dist/
 .pytest_cache/
 .coverage
 htmlcov/
 
-# Documentation build
-docs/_build/
+.env
+.venv/
+venv/
 
-# Data processing artifacts
-data/processed/
-data/interim/
-*.pkl
-*.joblib
+# Generated demo output
+out/
 
-# Log files
-*.log
-
-# Large dataset files (keep samples for education)
-*.csv.gz
-data/large_datasets/
-
-# Notebook outputs that change frequently
-*.ipynb_checkpoints
-
-# Keep educational assets - IMPORTANT FOR GRANTS
-# Visual documentation helps tell the community story
-# !assets/
-# !assets/**
-# !diagrams/
-# !docs/images/
-
-# Allow sample data for educational purposes
-!data/sample_compounds.csv
-!data/educational_examples/
-
-# Allow documentation assets
-!docs/cultural_bias_guide.md
-!docs/ethical_guidelines.md
-!docs/methodology.md
-!assets/diagrams/*.png
-!assets/diagrams/*.jpg
-!assets/diagrams/*.svg
-
-# Temporary analysis scratch work
-scratch/
-temp_analysis/
-quick_test/
+.vscode/
+.idea/
+.DS_Store

@@ -1,0 +1,9 @@
+{
+  "formulation_name": "SYNTHETIC Partial-Result Example",
+  "entries": [
+    { "name": "CBD", "percentage": 10 },
+    { "name": "Linalool", "percentage": 0.5 },
+    { "name": "CBDV", "percentage": 0.8, "smiles": "CCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1" },
+    { "name": "Unlisted extract fraction", "percentage": 2 }
+  ]
+}
