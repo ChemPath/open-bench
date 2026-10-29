@@ -36,3 +36,12 @@ Demo outputs are for illustration only. They are not laboratory results and shou
 ## Reference library provenance
 
 `data/reference_compounds.csv` holds structures transcribed from public chemical databases. The suite checks InChIKeys for CBN, CBD, Δ9-THC, caffeine and quercetin against published identifiers. Treat the other entries as convenience structures and verify them before any research use.
+
+## Chemical Space Explorer dataset
+
+`data/chemical_space.csv` holds 65 natural products across seven families: phytocannabinoids, monoterpenoids, sesquiterpenoids, flavonoids, phenolics, alkaloids, and triterpenoids/steroids. Each structure was checked in two ways: its formula against the published molecular formula, and its InChIKey connectivity block against published identifiers. Compounds that could not be confirmed confidently were left out.
+
+- `stereo = defined`: full stereochemistry is given, and the InChIKey matches the natural configuration.
+- `stereo = 2D only`: tetrahedral stereochemistry is deliberately omitted. These structures are correct as 2D connectivity, which is all the explorer's 2D descriptors and fingerprints use. They do not identify a specific stereoisomer.
+
+The checks were made without live database access. Spot-check against PubChem before any research use.

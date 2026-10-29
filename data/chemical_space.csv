@@ -1,0 +1,66 @@
+name,compound_class,family,stereo,smiles,inchikey
+CBN,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c2c(c1)OC(C)(C)c1ccc(C)cc1-2,VBGLYOIFKLUMQG-UHFFFAOYSA-N
+CBD,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1,QHMBSVQNZZTUGM-ZWKOTPCHSA-N
+THC,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21,CYQFCXCEBYINGO-IAGOWNOFSA-N
+THCV,phytocannabinoid,Phytocannabinoid,defined,CCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21,ZROLHBHDLIHEMS-HUUCEWRRSA-N
+CBG,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c(C/C=C(\C)CCC=C(C)C)c(O)c1,QXACEHWTBCFNSA-SFQUDFHCSA-N
+CBC,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c2C=CC(C)(CCC=C(C)C)Oc2c1,UVOLYTDXHDXWJU-UHFFFAOYSA-N
+beta-Myrcene,monoterpene,Monoterpenoid,defined,CC(C)=CCCC(=C)C=C,UAHWPYUMFXYFJY-UHFFFAOYSA-N
+D-Limonene,monoterpene,Monoterpenoid,defined,CC1=CC[C@@H](CC1)C(C)=C,XMGQYMWWDOXHJM-JTQLQIEISA-N
+Linalool,monoterpene alcohol,Monoterpenoid,defined,CC(C)=CCCC(C)(O)C=C,CDOSHBSSFJOMGT-UHFFFAOYSA-N
+alpha-Pinene,monoterpene,Monoterpenoid,defined,CC1=CCC2CC1C2(C)C,GRWFGVWFFZKLTI-UHFFFAOYSA-N
+beta-Caryophyllene,sesquiterpene,Sesquiterpenoid,defined,C/C1=C\CCC(=C)[C@H]2CC(C)(C)[C@@H]2CC1,NPNUFJAVOOONJE-GFUGXAQUSA-N
+alpha-Humulene,sesquiterpene,Sesquiterpenoid,defined,C/C1=C\CC(C)(C)/C=C/C/C(C)=C/CC1,FAMPSKZZVDUYOS-HRGUGZIWSA-N
+Caffeine,purine alkaloid,Alkaloid,defined,CN1C=NC2=C1C(=O)N(C(=O)N2C)C,RYYVLZVUVIJVGH-UHFFFAOYSA-N
+Quercetin,flavonol,Flavonoid,defined,O=c1c(O)c(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12,REFJWTPEDVJJIY-UHFFFAOYSA-N
+Curcumin,curcuminoid,Phenolic,defined,COc1cc(/C=C/C(=O)CC(=O)/C=C/c2ccc(O)c(OC)c2)ccc1O,VFLDPWHFBUODDF-FCXRPNKRSA-N
+trans-Resveratrol,stilbenoid,Phenolic,defined,Oc1ccc(/C=C/c2cc(O)cc(O)c2)cc1,LUKBXSAWLPMMSZ-OWOJBTEDSA-N
+CBDV,phytocannabinoid,Phytocannabinoid,defined,CCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1,REOZWEGFPHTFEI-JKSUJKDBSA-N
+CBDA,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c([C@@H]2C=C(C)CC[C@H]2C(C)=C)c(O)c1C(=O)O,WVOLTBSCXRRQFR-DLBZAZTESA-N
+THCA-A,phytocannabinoid,Phytocannabinoid,2D only,CCCCCc1cc2c(c(O)c1C(=O)O)C1C=C(C)CCC1C(C)(C)O2,UCONUSSAWGCZMV-UHFFFAOYSA-N
+CBGA,phytocannabinoid,Phytocannabinoid,defined,CCCCCc1cc(O)c(C/C=C(\C)CCC=C(C)C)c(O)c1C(=O)O,SEEZIOZEUUMJME-FOWTUZBSSA-N
+delta-8-THC,phytocannabinoid,Phytocannabinoid,2D only,CCCCCc1cc(O)c2c(c1)OC(C)(C)C1CC=C(C)CC21,HCAWPGARWVBULJ-UHFFFAOYSA-N
+beta-Pinene,monoterpene,Monoterpenoid,2D only,C=C1CCC2CC1C2(C)C,WTARULDDTDQWMU-UHFFFAOYSA-N
+Terpinolene,monoterpene,Monoterpenoid,defined,CC1=CCC(=C(C)C)CC1,MOYAFQVGZZPNRA-UHFFFAOYSA-N
+beta-Ocimene,monoterpene,Monoterpenoid,defined,CC(C)=CC/C=C(\C)C=C,IHPKGUQCSIINRJ-CSKARUKUSA-N
+Camphene,monoterpene,Monoterpenoid,2D only,C=C1C2CCC(C2)C1(C)C,CRPUJAZIXJMDBK-UHFFFAOYSA-N
+Geraniol,monoterpene alcohol,Monoterpenoid,defined,CC(C)=CCC/C(C)=C/CO,GLZPCOQZEFWAFX-JXMROGBWSA-N
+alpha-Terpineol,monoterpene alcohol,Monoterpenoid,2D only,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN-UHFFFAOYSA-N
+Eucalyptol,monoterpene ether,Monoterpenoid,defined,CC12CCC(CC1)C(C)(C)O2,WEEGYLXZBRQIMU-UHFFFAOYSA-N
+Borneol,monoterpene alcohol,Monoterpenoid,2D only,CC1(C)C2CCC1(C)C(O)C2,DTGKSKDOIYIVQL-UHFFFAOYSA-N
+Menthol,monoterpene alcohol,Monoterpenoid,2D only,CC1CCC(C(C)C)C(O)C1,NOOLISFMXDJSKH-UHFFFAOYSA-N
+Carvacrol,monoterpene phenol,Monoterpenoid,defined,Cc1ccc(C(C)C)cc1O,RECUKUPTGUEGMW-UHFFFAOYSA-N
+Thymol,monoterpene phenol,Monoterpenoid,defined,Cc1ccc(C(C)C)c(O)c1,MGSRCZKZVOBKFT-UHFFFAOYSA-N
+Caryophyllene oxide,sesquiterpene,Sesquiterpenoid,2D only,C=C1CCC2OC2(C)CCC2C1CC2(C)C,NVEQFIOZRFFVFW-UHFFFAOYSA-N
+trans-Nerolidol,sesquiterpene alcohol,Sesquiterpenoid,2D only,C=CC(C)(O)CC/C=C(\C)CCC=C(C)C,FQTLCLSUCSAZDY-SDNWHVSQSA-N
+alpha-Bisabolol,sesquiterpene alcohol,Sesquiterpenoid,2D only,CC(C)=CCCC(C)(O)C1CC=C(C)CC1,RGZSQWQPBWRIAQ-UHFFFAOYSA-N
+Valencene,sesquiterpene,Sesquiterpenoid,2D only,C=C(C)C1CCC2=CCCC(C)C2(C)C1,QEBNYNLSCGVZOH-UHFFFAOYSA-N
+Kaempferol,flavonol,Flavonoid,defined,O=c1c(O)c(-c2ccc(O)cc2)oc2cc(O)cc(O)c12,IYRMWMYZSQPJKC-UHFFFAOYSA-N
+Myricetin,flavonol,Flavonoid,defined,O=c1c(O)c(-c2cc(O)c(O)c(O)c2)oc2cc(O)cc(O)c12,IKMDFBPHZNJCSN-UHFFFAOYSA-N
+Apigenin,flavone,Flavonoid,defined,O=c1cc(-c2ccc(O)cc2)oc2cc(O)cc(O)c12,KZNIFHPLKGYRTM-UHFFFAOYSA-N
+Luteolin,flavone,Flavonoid,defined,O=c1cc(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12,IQPNAANSBPBGFQ-UHFFFAOYSA-N
+Chrysin,flavone,Flavonoid,defined,O=c1cc(-c2ccccc2)oc2cc(O)cc(O)c12,RTIXKCRFFJGDFG-UHFFFAOYSA-N
+Naringenin,flavanone,Flavonoid,2D only,O=C1CC(c2ccc(O)cc2)Oc2cc(O)cc(O)c21,FTVWIRXFELQLPI-UHFFFAOYSA-N
+Catechin,flavan-3-ol,Flavonoid,2D only,Oc1cc(O)c2c(c1)OC(c1ccc(O)c(O)c1)C(O)C2,PFTAWBLQPZVEMU-UHFFFAOYSA-N
+Genistein,isoflavone,Flavonoid,defined,O=c1c(-c2ccc(O)cc2)coc2cc(O)cc(O)c12,TZBJGXHYKVUXJN-UHFFFAOYSA-N
+Caffeic acid,phenolic acid,Phenolic,defined,O=C(O)/C=C/c1ccc(O)c(O)c1,QAIPRVGONGVQAS-DUXPYHPUSA-N
+Ferulic acid,phenolic acid,Phenolic,defined,COc1cc(/C=C/C(=O)O)ccc1O,KSEBMYQBYZTDHS-HWKANZROSA-N
+Gallic acid,phenolic acid,Phenolic,defined,O=C(O)c1cc(O)c(O)c(O)c1,LNTHITQWFMADLM-UHFFFAOYSA-N
+Rosmarinic acid,phenolic acid,Phenolic,2D only,O=C(/C=C/c1ccc(O)c(O)c1)OC(Cc1ccc(O)c(O)c1)C(=O)O,DOUMFZQKYFQNTF-ZZXKWVIFSA-N
+Salicylic acid,phenolic acid,Phenolic,defined,O=C(O)c1ccccc1O,YGSDEFSMJLZEOE-UHFFFAOYSA-N
+Capsaicin,capsaicinoid,Phenolic,defined,COc1cc(CNC(=O)CCCC/C=C/C(C)C)ccc1O,YKPUWZUDDOIDPM-SOFGYWHQSA-N
+6-Gingerol,phenolic ketone,Phenolic,2D only,CCCCCC(O)CC(=O)CCc1ccc(O)c(OC)c1,NLDDIKRKFXEWBK-UHFFFAOYSA-N
+Eugenol,phenylpropanoid,Phenolic,defined,C=CCc1ccc(O)c(OC)c1,RRAFCDWBNXTKKO-UHFFFAOYSA-N
+Theobromine,purine alkaloid,Alkaloid,defined,Cn1cnc2c1c(=O)[nH]c(=O)n2C,YAPQBXQYLJRXSA-UHFFFAOYSA-N
+Berberine,isoquinoline alkaloid,Alkaloid,defined,COc1ccc2cc3[n+](cc2c1OC)CCc1cc2OCOc2cc1-3,YBHILYKTIRIUTE-UHFFFAOYSA-N
+Piperine,piperidine alkaloid,Alkaloid,defined,O=C(/C=C/C=C/c1ccc2OCOc2c1)N1CCCCC1,MXXWOMGUGJBKIW-YPCIICBESA-N
+Nicotine,pyridine alkaloid,Alkaloid,2D only,CN1CCCC1c1cccnc1,SNICXCGAKADSCV-UHFFFAOYSA-N
+Galantamine,isoquinoline alkaloid,Alkaloid,2D only,COc1ccc2c3c1OC1CC(O)C=CC31CCN(C)C2,ASUTZQLVASHGKV-UHFFFAOYSA-N
+Quinine,quinoline alkaloid,Alkaloid,2D only,C=CC1CN2CCC1CC2C(O)c1ccnc2ccc(OC)cc12,LOUPRKONTZGTKE-UHFFFAOYSA-N
+Huperzine A,lycopodium alkaloid,Alkaloid,2D only,CC=C1C2C=C(C)CC1(N)c1ccc(=O)[nH]c1C2,ZRJBHWIHUMBLCN-UHFFFAOYSA-N
+Salidroside,phenylethanoid glycoside,Phenolic,2D only,OCC1OC(OCCc2ccc(O)cc2)C(O)C(O)C1O,ILRCGYURZSFMEG-UHFFFAOYSA-N
+Ursolic acid,triterpenoid,Triterpenoid/steroid,2D only,CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1C,WCGUUGGRBIKTOS-UHFFFAOYSA-N
+beta-Sitosterol,phytosterol,Triterpenoid/steroid,2D only,CCC(CCC(C)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C)C(C)C,KZJWDPNRJALLNS-UHFFFAOYSA-N
+Artemisinin,sesquiterpene lactone,Sesquiterpenoid,2D only,CC1CCC2C(C)C(=O)OC3OC4(C)CCC1C32OO4,BLUAFEHZUWYNDE-UHFFFAOYSA-N
+Parthenolide,sesquiterpene lactone,Sesquiterpenoid,2D only,C=C1C(=O)OC2C1CCC(C)=CCCC1(C)OC21,KTEXNACQROZXEV-UHFFFAOYSA-N
+Withaferin A,withanolide,Triterpenoid/steroid,2D only,CC1=C(CO)C(=O)OC(C(C)C2CCC3C4CC5OC56C(O)C=CC(=O)C6(C)C4CCC23C)C1,DBRXOUCRJQVYJQ-UHFFFAOYSA-N
