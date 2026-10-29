@@ -143,12 +143,13 @@ def _qc(results: list[dict[str, Any]]) -> dict[str, Any]:
         notes.append(f"reported percentages sum to {pct_sum}% (not independently verified)")
         if pct_sum > 100:
             notes.append("reported percentages exceed 100% in total")
-    if len(reported) < len(results):
-        notes.append(f"{len(results) - len(reported)} entr(ies) have no reported percentage")
+    missing = len(results) - len(reported)
+    if missing:
+        notes.append(f"{missing} {'entry has' if missing == 1 else 'entries have'} no reported percentage")
 
     dupes = [k for k, n in Counter(r["inchikey"] for r in ok).items() if n > 1]
     if dupes:
-        notes.append(f"duplicate structures submitted under different names: {', '.join(dupes)}")
+        notes.append(f"same structure submitted more than once: {', '.join(dupes)}")
     unassigned = [r["input_name"] for r in ok if r["structure_source"] != "reference_library"
                   and r["descriptors"]["stereocenters"] and "@" not in r["canonical_smiles"]]
     if unassigned:

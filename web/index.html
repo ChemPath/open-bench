@@ -411,11 +411,12 @@ function qc(results) {
     notes.push(`reported percentages sum to ${pyFloat(pctSum)}% (not independently verified)`);
     if (pctSum > 100) notes.push("reported percentages exceed 100% in total");
   }
-  if (reported.length < results.length) notes.push(`${results.length - reported.length} entr(ies) have no reported percentage`);
+  const missing = results.length - reported.length;
+  if (missing) notes.push(`${missing} ${missing === 1 ? "entry has" : "entries have"} no reported percentage`);
   const counts = new Map();
   for (const r of ok) counts.set(r.inchikey, (counts.get(r.inchikey) || 0) + 1);
   const dupes = [...counts].filter(([, n]) => n > 1).map(([k]) => k);
-  if (dupes.length) notes.push(`duplicate structures submitted under different names: ${dupes.join(", ")}`);
+  if (dupes.length) notes.push(`same structure submitted more than once: ${dupes.join(", ")}`);
   const unassigned = ok.filter((r) => r.structure_source !== "reference_library"
     && r.descriptors.stereocenters && !r.canonical_smiles.includes("@")).map((r) => r.input_name);
   if (unassigned.length) notes.push(`stereochemistry unspecified for: ${unassigned.join(", ")}`);

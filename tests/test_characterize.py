@@ -91,7 +91,7 @@ def test_qc_flags_overfull_and_duplicate_entries():
         {"name": "CBD", "percentage": 80}, {"name": "cannabidiol", "percentage": 30}))
     notes = " ".join(report["qc"]["notes"])
     assert "exceed 100%" in notes
-    assert "duplicate structures" in notes
+    assert "same structure submitted more than once" in notes
 
 
 def test_batch_accounts_for_every_item():
