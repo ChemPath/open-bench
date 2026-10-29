@@ -30,7 +30,7 @@ def write_pdf(report: dict[str, Any], path: Path) -> Path:
 
     Raises:
         RuntimeError: If ``reportlab`` is not installed.
-        ValueError: If the analysis failed (the hosted API returns 409 here).
+        ValueError: If the analysis failed (HTTP-style: 409).
     """
     try:
         from reportlab.lib import colors
@@ -42,7 +42,7 @@ def write_pdf(report: dict[str, Any], path: Path) -> Path:
         raise RuntimeError("PDF output requires reportlab: pip install reportlab") from exc
 
     if report["status"] == "failed":
-        raise ValueError("failed analyses have no exportable report (API returns 409)")
+        raise ValueError("failed analyses have no exportable report (HTTP-style: 409)")
 
     styles = getSampleStyleSheet()
     small = styles["BodyText"].clone("small", fontSize=8, leading=10)

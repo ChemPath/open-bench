@@ -1,4 +1,4 @@
-"""ChemPath demo: open reference implementation of the ChemPath output contract.
+"""ChemPath demo: public demonstration of ChemPath molecular characterization.
 
 Structure characterization of botanical formulations with RDKit, plus SHAP
 explainability on a synthetic model. Not the production ChemPath engine.

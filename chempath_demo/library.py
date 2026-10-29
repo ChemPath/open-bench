@@ -2,8 +2,7 @@
 
 The bundled library (``data/reference_compounds.csv``) lists common
 phytocannabinoids, terpenes and polyphenols with structures transcribed from
-public sources. It stands in for name resolution in the hosted service and is
-intentionally small: names outside it must be submitted with ``smiles`` or
+public sources. It is intentionally small: names outside it must be submitted with ``smiles`` or
 ``inchi``.
 """
 

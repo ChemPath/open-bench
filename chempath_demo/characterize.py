@@ -171,8 +171,8 @@ def analyze_formulation(payload: Any) -> dict[str, Any]:
 
     Returns:
         A report dict. ``status`` is ``success``, ``partial`` or ``failed``.
-        The hosted API returns HTTP 422 for ``failed``; ``http_status`` in the
-        report records that equivalence.
+        ``http_status`` gives the HTTP-style code for the outcome (422 when
+        ``failed``), for wrapping the demo behind a web endpoint.
 
     Raises:
         RequestError: For malformed or invalid requests (400/422).
@@ -198,7 +198,7 @@ def analyze_formulation(payload: Any) -> dict[str, Any]:
             "name": "chempath-demo",
             "version": __version__,
             "rdkit_version": rdBase.rdkitVersion,
-            "note": "Open reference implementation of the ChemPath output contract.",
+            "note": "Public demonstration build. Not the production ChemPath engine.",
         },
     }
 

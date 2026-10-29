@@ -1,6 +1,6 @@
-# ChemPath API Contract
+# ChemPath Demo — Request and Report Format
 
-This document describes the public request/response contract shared by this demo and the hosted ChemPath service. Field names and status semantics match. Values computed by the hosted engine can differ from the demo's open RDKit output.
+Field reference for the demo's input and output. Error codes are HTTP-style, so the demo can be wrapped behind a web endpoint (for example, a website "try it" widget).
 
 ## Formulation request
 
@@ -15,16 +15,12 @@ This document describes the public request/response contract shared by this demo
 
 ## Request errors
 
-| Condition | Hosted API | Demo |
+| Condition | Code | Demo behavior |
 | --- | --- | --- |
 | Body is not an object; `entries` missing or not a list; entry not an object | 400 | `RequestError(http_status=400)` |
 | Empty `entries`; blank name; invalid percentage | 422 | `RequestError(http_status=422)` |
-| No entry could be characterized | 422, stored as failed | report with `status: "failed"`, `http_status: 422` |
-| Export of a failed analysis | 409 | `write_pdf` raises `ValueError` |
-| Missing or invalid API key | 401 | n/a |
-| Non-testing-lab account | 403 | n/a |
-| Unknown analysis, or one belonging to another lab | 404 | n/a |
-| Quota exceeded | 429 + `Retry-After` | n/a |
+| No entry could be characterized | 422 | report with `status: "failed"`, `http_status: 422` |
+| PDF export of a failed analysis | 409 | `write_pdf` raises `ValueError` |
 
 ## Report
 

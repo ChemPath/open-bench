@@ -1,6 +1,6 @@
 """Request validation for the ChemPath demo.
 
-Mirrors the public request contract of the ChemPath formulation API:
+Request format for a ChemPath-style formulation analysis:
 ``entries`` with a nonblank ``name``, an optional ``percentage`` in [0, 100],
 and an optional explicit ``smiles`` or ``inchi`` structure.
 """
@@ -15,11 +15,10 @@ MAX_BATCH_ITEMS = 25
 
 
 class RequestError(ValueError):
-    """A request the API would reject before analysis.
+    """A request rejected before analysis.
 
     Attributes:
-        http_status: The status code the hosted API returns for this class of
-            error (400 for malformed JSON shapes, 422 for invalid inputs).
+        http_status: HTTP-style code for this class of error (400 for malformed JSON shapes, 422 for invalid inputs).
     """
 
     def __init__(self, message: str, http_status: int = 422) -> None:

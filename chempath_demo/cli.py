@@ -68,7 +68,7 @@ def cmd_analyze(args: argparse.Namespace) -> int:
     _emit(report, args.out)
     if args.pdf:
         if report["status"] == "failed":
-            print("no PDF for a failed analysis (API equivalent: 409)", file=sys.stderr)
+            print("no PDF for a failed analysis (HTTP-style: 409)", file=sys.stderr)
         else:
             Path(args.pdf).parent.mkdir(parents=True, exist_ok=True)
             write_pdf(report, Path(args.pdf))

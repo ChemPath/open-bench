@@ -11,7 +11,7 @@ ChemPath answers one question per compound: **what structure is this, and what a
 
 ## What it does not claim
 
-These limits apply to both the hosted service and this demo:
+These limits apply to ChemPath generally, not only to this demo:
 
 - **Composition:** reported percentages are echoed from the request, not measured or verified.
 - **Interaction:** no synergy, entourage, or compound–compound interaction claims.
@@ -21,18 +21,17 @@ These limits apply to both the hosted service and this demo:
 
 Laboratory confirmation is required for any decision.
 
-## How the demo differs from the hosted engine
+## How the demo differs from production ChemPath
 
-| Aspect | Demo (this repo) | Hosted ChemPath |
+| Aspect | Demo (this repo) | Production ChemPath |
 | --- | --- | --- |
-| Name resolution | 16-compound public CSV | Hosted service |
+| Name resolution | 16-compound public CSV | Not published |
 | Structure toolkit | Open-source RDKit | Proprietary, not published |
 | QC notes | Simple illustrative checks | Production rules, not published |
 | Explainability | SHAP on a synthetic, planted-rule model | Not published |
-| Persistence, tenancy, quotas, branding | None (local, stateless) | Hosted service |
-| Outputs | Labeled `SYNTHETIC DEMO` | Lab reports |
+| Outputs | Labeled `SYNTHETIC DEMO` | Laboratory reports |
 
-Demo outputs are for illustration and integration testing. They are not laboratory results and should not be presented as revalidated production reports.
+Demo outputs are for illustration only. They are not laboratory results and should not be presented as revalidated production reports.
 
 ## Reference library provenance
 
